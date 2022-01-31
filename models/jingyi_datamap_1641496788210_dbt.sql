@@ -1,0 +1,19 @@
+{{config(
+	catalog = "hive",
+	schema = "pm61devs3",
+	materialized = "view"
+)}}
+WITH select_step1 as (
+  SELECT
+    "oracle"."CUSTOMER_DEMO"."FACT_SUBSCRIPTION_ACTIVITY"."SBSCRN_ID" AS "SBSCRN_ID",
+    "oracle"."CUSTOMER_DEMO"."FACT_SUBSCRIPTION_ACTIVITY"."ACTVTY_TYPE_ID" AS "ACTVTY_TYPE_ID",
+    "oracle"."CUSTOMER_DEMO"."FACT_SUBSCRIPTION_ACTIVITY"."USED_ACTVTY_TYPE_ID" AS "USED_ACTVTY_TYPE_ID"
+  FROM
+    "oracle"."CUSTOMER_DEMO"."FACT_SUBSCRIPTION_ACTIVITY"
+)
+SELECT
+  *
+FROM
+  select_step1
+LIMIT
+  100
